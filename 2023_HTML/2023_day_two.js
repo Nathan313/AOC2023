@@ -25,22 +25,19 @@ function partOne(){
     var runningTotal = 0;
     for(var i = 0; i < newArray.length; i++){
         var currentValid = true;
-        //replace text Game followed by any amount of digits, then a colon and a space.
         var currentLine = newArray[i].trim().split(':');
         var currentLine = currentLine[1].split(';');
         for(var z = 0; z < currentLine.length; z++){
             var currentGame = currentLine[z];
             currentGame = currentGame.split(',');
-            if(currentValid){
-                for(var y = 0; y < currentGame.length; y++){
-                    var currentCube = currentGame[y].trim().split(' ');
-                    if(maxCubes[currentCube[1]] < currentCube[0]){
-                        currentValid = false;
-                        break;
-                    }
+            for(var y = 0; y < currentGame.length; y++){
+                var currentCube = currentGame[y].trim().split(' ');
+                if(maxCubes[currentCube[1]] < currentCube[0]){
+                    currentValid = false;
+                    break;
                 }
             }
-            else{
+            if(!currentValid){
                 break;
             }
         }
@@ -48,6 +45,7 @@ function partOne(){
             runningTotal += parseInt(i+1);
         }
     }
+        
     console.log(runningTotal);
 }
 
@@ -70,7 +68,7 @@ function partTwo(){
             'blue': 0 
         }
         var powerSet = 0;
-        var currentLine = newArray[i].trim().split(':');
+        var currentLine = newArray[i].trim().split(':');  
         var currentLine = currentLine[1].split(';');
         for(var z = 0; z < currentLine.length; z++){
             var currentGame = currentLine[z];
